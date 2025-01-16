@@ -1,6 +1,6 @@
 import React from "react";
 import { HiPlus, HiSearch } from "react-icons/hi";
-
+import {Link} from "react-router-dom";
 import useSWR from "swr";
 import ProductListSkeleton from "./ProductListSkeleton";
 import ProductListEmpty from "./ProductListEmpty";
@@ -29,12 +29,13 @@ const ProductList = () => {
             </div>
           </div>
           <div className="">
-            <button
+            
+            <Link to="/product/create"
               type="submit"
               className="text-white flex justify-center items-center gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Add New Product <HiPlus />
-            </button>
+            </Link>
           </div>
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

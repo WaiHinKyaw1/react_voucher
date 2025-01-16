@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "phone",
-      "price": 150000,
-      "created_at": "2023-01-25"
-    },
-    {
       "id": 4,
       "name": "Smart Watch",
       "price": 25000,
@@ -19,10 +13,38 @@
       "created_at": "2023-06-10"
     },
     {
-      "id": 8,
       "name": "Camera",
-      "price": 60000,
-      "created_at": "2023-07-25"
+      "price": "60000",
+      "created_at": "2025-01-15T04:07:08.748Z",
+      "id": 8
+    },
+    {
+      "voucher_id": "12345",
+      "customer_name": "wai gyi",
+      "customer_email": "waigyi@gmail.com",
+      "sale_date": "2025-01-15",
+      "id": 9
+    },
+    {
+      "voucher_id": "12345",
+      "customer_name": "wai gyi",
+      "customer_email": "waigyi@gmail.com",
+      "sale_date": "2025-01-15",
+      "id": 10
+    },
+    {
+      "voucher_id": "12345",
+      "customer_name": "wai gyi",
+      "customer_email": "waigyi@gmail.com",
+      "sale_date": "2025-01-15",
+      "id": 11
+    },
+    {
+      "voucher_id": "12345",
+      "customer_name": "wai gyi",
+      "customer_email": "waigyi@gmail.com",
+      "sale_date": "2025-01-15",
+      "id": 12
     }
   ]
 }
