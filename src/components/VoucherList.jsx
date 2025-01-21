@@ -1,7 +1,15 @@
 import React from "react";
 import { HiArrowCircleRight, HiSearch } from "react-icons/hi";
 import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi2";
+import useSWR from "swr";
+import VoucherListRow from "./VoucherListRow";
+import { Link } from "react-router-dom";
 const VoucherList = () => {
+
+  const fetcher = (url)=>fetch(url).then(res=>res.json());
+  const {data,isLoading,error} = useSWR(
+    import.meta.env.VITE_API_URL + "/Vouchers",fetcher
+  );
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -20,16 +28,17 @@ const VoucherList = () => {
             </div>
           </div>
           <div className="">
-            <button
+            <Link
+            to={"/sale"}
               type="submit"
               className="text-white flex justify-center items-center gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Create Voucher <HiArrowCircleRight />
-            </button>
+            </Link>
           </div>
         </div>
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Voucher Id
@@ -49,41 +58,9 @@ const VoucherList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td className="px-6 py-4">1</td>
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Aung Aung
-              </th>
-              <td className="px-6 py-4 text-end">aung@gmail.com</td>
-
-              <td className="px-6 py-4 text-end">
-                <p className="text-sm">13 Jan 2025</p>
-                <p className="text-sm">10:18 AM</p>
-              </td>
-              <td className="px-6 py-4 text-end">
-                <div
-                  className="inline-flex rounded-md shadow-sm items-end"
-                  role="group"
-                >
-                  <button
-                    type="button"
-                    className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
-                  >
-                    <HiOutlinePencil />
-                  </button>
-                  <button
-                    type="button"
-                    className="px-4 py-2 text-sm font-medium text-red-500 bg-white border-t rounded-e-lg border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
-                  >
-                    <HiOutlineTrash />
-                  </button>
-                  
-                </div>
-              </td>
-            </tr>
+            {
+              data?.map((voucher)=><VoucherListRow voucher={voucher} key={voucher.id}/>) 
+            }
           </tbody>
         </table>
       </div>

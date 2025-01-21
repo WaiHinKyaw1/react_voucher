@@ -4,23 +4,14 @@ import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import { useSWRConfig } from "swr";
 import { ring2, square } from "ldrs";
 import { Link } from "react-router-dom";
+import ShowDate from "./showDate";
 
 ring2.register();
 
 const ProductRow = ({ product: { id, name, price, created_at } }) => {
   const { mutate } = useSWRConfig();
   const [sending, setSending] = useState(false);
-  const date = new Date(created_at);
-  const currentDate = date.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-  const currentTime = date.toLocaleTimeString("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
+  
 
   const handleDeleteBtn = async () => {
     setSending(true);
@@ -44,8 +35,7 @@ const ProductRow = ({ product: { id, name, price, created_at } }) => {
       <td className="px-6 py-4 text-end">{price}</td>
 
       <td className="px-6 py-4 text-end">
-        <p className="text-sm">{currentDate}</p>
-        <p className="text-sm">{currentTime}</p>
+        <ShowDate timestamp={created_at} />
       </td>
       <td className="px-6 py-4 text-end">
         <div

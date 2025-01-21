@@ -1,67 +1,160 @@
 {
-    "products":[
-        
-        {
-            "id": 1,
-            "name": "phone",
-            "price": 150000,
-            "created_at": "2023-01-25"
-        },
-        {
-
-            "id": 2,
-            "name": "Laptop",
-            "price": 150000,
-            "created_at": "2023-01-15"
-        },
-        {
-            "id": 3,
-            "name": "Tablet",
-            "price": 50000,
-            "created_at": "2023-02-10"
-        },
-        {
-            "id": 4,
-            "name": "Smart Watch",
-            "price": 25000,
-            "created_at": "2023-03-05"
-        },
-        {
-            "id": 5,
-            "name": "Wireless Earbuds",
-            "price": 10000,
-            "created_at": "2023-04-20"
-        },
-        {
-            "id": 6,
-            "name": "Desktop PC",
-            "price": 80000,
-            "created_at": "2023-05-15"
-        },
-        {
-            "id": 7,
-            "name": "Gaming Console",
-            "price": 40000,
-            "created_at": "2023-06-10"
-        },
-        {
-            "id": 8,
-            "name": "Camera",
-            "price": 60000,
-            "created_at": "2023-07-25"
-        },
-        {
-            "id": 9,
-            "name": "External Hard Drive",
-            "price": 7000,
-            "created_at": "2023-08-15"
-        },
-        {
-            "id": 10,
-            "name": "Bluetooth Speaker",
-            "price": 15000,
-            "created_at": "2023-09-05"
-        }
+    "products": [
+      {
+        "id": 1,
+        "name": "phone",
+        "price": 150000,
+        "created_at": "2023-01-25"
+      },
+      {
+        "id": 2,
+        "name": "Laptop",
+        "price": 150000,
+        "created_at": "2023-01-15"
+      },
+      {
+        "id": 3,
+        "name": "Tablet",
+        "price": 50000,
+        "created_at": "2023-02-10"
+      },
+      {
+        "id": 4,
+        "name": "Smart Watch",
+        "price": 25000,
+        "created_at": "2023-03-05"
+      },
+      {
+        "id": 5,
+        "name": "Wireless Earbuds",
+        "price": 10000,
+        "created_at": "2023-04-20"
+      },
+      {
+        "id": 6,
+        "name": "Desktop PC",
+        "price": 80000,
+        "created_at": "2023-05-15"
+      },
+      {
+        "id": 7,
+        "name": "Gaming Console",
+        "price": 40000,
+        "created_at": "2023-06-10"
+      },
+      {
+        "id": 8,
+        "name": "Camera",
+        "price": 60000,
+        "created_at": "2023-07-25"
+      },
+      {
+        "id": 9,
+        "name": "External Hard Drive",
+        "price": 7000,
+        "created_at": "2023-08-15"
+      },
+      {
+        "id": 10,
+        "name": "Bluetooth Speaker",
+        "price": 15000,
+        "created_at": "2023-09-05"
+      }
+    ],
+    "Vouchers": [
+      {
+        "voucher_id": "INV-250117-21446",
+        "customer_name": "kyaw",
+        "customer_email": "kyawkyaw2@gmail.com",
+        "sale_date": "2025-01-17",
+        "all_check": true,
+        "records": [
+          {
+            "id": 1737106337861,
+            "product": {
+              "id": 2,
+              "name": "Laptop",
+              "price": 150000,
+              "created_at": "2023-01-15"
+            },
+            "cost": 900000,
+            "quantity": 6
+          }
+        ],
+        "total": 900000,
+        "tax": 180000,
+        "netTotal": 1080000,
+        "id": 1
+      },
+      {
+        "voucher_id": "INV-250117-56513",
+        "customer_name": "aung aung",
+        "customer_email": "aungaung@gmail.com",
+        "sale_date": "2025-01-17",
+        "all_check": true,
+        "records": [
+          {
+            "id": 1737108076443,
+            "product": {
+              "id": 4,
+              "name": "Smart Watch",
+              "price": 25000,
+              "created_at": "2023-03-05"
+            },
+            "cost": 75000,
+            "quantity": "3"
+          },
+          {
+            "id": 1737108084002,
+            "product": {
+              "id": 6,
+              "name": "Desktop PC",
+              "price": 80000,
+              "created_at": "2023-05-15"
+            },
+            "cost": 80000,
+            "quantity": "1"
+          }
+        ],
+        "total": 155000,
+        "tax": 31000,
+        "netTotal": 186000,
+        "id": 2
+      },
+      {
+        "voucher_id": "INV-250117-92265",
+        "customer_name": "waigyi",
+        "customer_email": "waigyi@gmail.com",
+        "sale_date": "2025-01-17",
+        "all_check": true,
+        "records": [
+          {
+            "id": 1737108566706,
+            "product": {
+              "id": 10,
+              "name": "Bluetooth Speaker",
+              "price": 15000,
+              "created_at": "2023-09-05"
+            },
+            "cost": 45000,
+            "quantity": 3
+          },
+          {
+            "id": 1737108578901,
+            "product": {
+              "id": 3,
+              "name": "Tablet",
+              "price": 50000,
+              "created_at": "2023-02-10"
+            },
+            "cost": 100000,
+            "quantity": "2"
+          }
+        ],
+        "total": 145000,
+        "tax": 29000,
+        "netTotal": 174000,
+        "id": 3
+      }
     ]
-    
-}
+  }
