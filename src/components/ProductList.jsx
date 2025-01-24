@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { HiPlus, HiSearch } from "react-icons/hi";
+import React, { useRef, useState } from "react";
+import { HiPlus, HiSearch, HiX } from "react-icons/hi";
 import {Link} from "react-router-dom";
 import useSWR from "swr";
 import ProductListSkeleton from "./ProductListSkeleton";
@@ -9,15 +9,18 @@ import { debounce, throttle } from "lodash";
 
 const ProductList = () => {
   const [search,setSearch] = useState("");
-  
+  const setSearching = useRef("");
   const fetcher = (url) => fetch(url).then(res=>res.json());
-  const {data,isLoading,error} = useSWR(
+  const {data,isLoading} = useSWR(
     search ? `${import.meta.env.VITE_API_URL}/products?name_like=${search}` : import.meta.env.VITE_API_URL + "/products",fetcher);
 
  const handleSearch= debounce((e)=>{
   setSearch(e.target.value);
  },1000);
-
+ const handleClearSearch = ()=>{
+    setSearch("");
+    setSearching.current.value="";
+ }
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -29,10 +32,12 @@ const ProductList = () => {
               </div>
               <input
                 type="text"
+                ref={setSearching}
                 onChange={handleSearch}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Product"
               />
+              {search && <button  onClick={handleClearSearch} className="absolute top-0 end-0 mt-3 me-3"><HiX/></button>}
             </div>
           </div>
           <div className="">
@@ -67,7 +72,7 @@ const ProductList = () => {
         </thead>
           <tbody>
         
-            { isLoading ? <ProductListSkeleton/> :
+            {isLoading ? <ProductListSkeleton/> :
             <>
             {data.length === 0 ? <ProductListEmpty/> : data.map((product)=><ProductRow key={product.id} product={product}/>)}
             </>            

@@ -52,6 +52,7 @@ const VoucherInfo = () => {
     toast.success("Voucher Create Success");
     reset();
     restRecord(true);
+    
     if (redirect_to_voucherDetail) {
       navigate(`/voucher/detail/${json.id}`);
     }

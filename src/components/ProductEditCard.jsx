@@ -16,11 +16,11 @@ const ProductEditCard = () => {
   } = useForm();
   const { id } = useParams();
   const fetcher = (url) => fetch(url).then((res) => res.json());
-  const { data, isLoading, error } = useSWR(
+  const { data, isLoading } = useSWR(
     import.meta.env.VITE_API_URL + `/products/${id}`,
     fetcher
   );
-  const {mutate} = useSWRConfig();
+  const { mutate } = useSWRConfig();
   const navigate = useNavigate();
   const [isSending, setIsSending] = useState(false);
   const handleProductCreate = async (data) => {
@@ -42,7 +42,7 @@ const ProductEditCard = () => {
     if (data.back_product_list) {
       navigate("/product");
     }
-    mutate (import.meta.env.VITE_API_URL + "/products");
+    mutate(import.meta.env.VITE_API_URL + "/products");
     toast.success("Product Update Successfully");
   };
   return (

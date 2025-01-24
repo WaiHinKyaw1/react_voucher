@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { HiArrowCircleRight, HiSearch } from "react-icons/hi";
+import React, { useRef, useState } from "react";
+import { HiArrowCircleRight, HiSearch, HiX } from "react-icons/hi";
 import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import useSWR from "swr";
 import VoucherListRow from "./VoucherListRow";
@@ -20,6 +20,13 @@ const VoucherList = () => {
   const handleSearch = throttle((e) => {
     setSearch(e.target.value);
   }, 500);
+  const searchInput = useRef("");
+  const handleClearSearch = () => {
+    setSearch("");
+    searchInput.current.value = "";
+  }
+  
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -31,11 +38,13 @@ const VoucherList = () => {
               </div>
               <input
                 onChange={handleSearch}
-                type="text"
+                ref = {searchInput}
+                type = "text"
                 id="input-group-1"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Voucher"
               />
+              {search && <button  onClick={handleClearSearch} className="absolute top-0 end-0 mt-3 me-3"><HiX/></button>}
             </div>
           </div>
           <div className="">
