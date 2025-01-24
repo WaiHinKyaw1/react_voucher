@@ -40,9 +40,10 @@ const router = createBrowserRouter([
                 element : <VoucherPage/>
             },
             {
-                path : '/voucherDetail',
+                path : '/voucher/detail/:id',
                 element : <VoucherDetailPage/>
-            }
+            },
+           
         ]
     }
 ]);

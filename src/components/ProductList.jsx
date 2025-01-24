@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiPlus, HiSearch } from "react-icons/hi";
 import {Link} from "react-router-dom";
 import useSWR from "swr";
 import ProductListSkeleton from "./ProductListSkeleton";
 import ProductListEmpty from "./ProductListEmpty";
 import ProductRow from "./ProductRow";
+import { debounce, throttle } from "lodash";
 
 const ProductList = () => {
-  const fetcher = (url) => fetch(url).then(res=>res.json());
-  const {data,isLoading,error} = useSWR(import.meta.env.VITE_API_URL + "/products",fetcher);
+  const [search,setSearch] = useState("");
   
+  const fetcher = (url) => fetch(url).then(res=>res.json());
+  const {data,isLoading,error} = useSWR(
+    search ? `${import.meta.env.VITE_API_URL}/products?name_like=${search}` : import.meta.env.VITE_API_URL + "/products",fetcher);
+
+ const handleSearch= debounce((e)=>{
+  setSearch(e.target.value);
+ },1000);
 
   return (
     <div>
@@ -22,7 +29,7 @@ const ProductList = () => {
               </div>
               <input
                 type="text"
-                id="input-group-1"
+                onChange={handleSearch}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search Product"
               />

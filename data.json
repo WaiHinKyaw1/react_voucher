@@ -67,5 +67,184 @@
       "id": 11
     }
   ],
-  "Vouchers": []
+  "Vouchers": [
+    {
+      "voucher_id": "INV-250121-70703",
+      "customer_name": "wai hin kyaw",
+      "customer_email": "waihinkyaw@gmail.com",
+      "sale_date": "2025-01-21",
+      "all_check": true,
+      "records": [
+        {
+          "id": 1737452689601,
+          "product": {
+            "id": 3,
+            "name": "Tablet",
+            "price": 50000,
+            "created_at": "2023-02-10"
+          },
+          "cost": 100000,
+          "quantity": "2"
+        }
+      ],
+      "total": 100000,
+      "tax": 20000,
+      "netTotal": 120000,
+      "id": 1
+    },
+    {
+      "voucher_id": "INV-250122-53622",
+      "customer_name": "kaung kaung",
+      "customer_email": "kaung@gmail.com",
+      "sale_date": "2025-01-22",
+      "all_check": true,
+      "records": [
+        {
+          "id": 1737529481154,
+          "product": {
+            "id": 6,
+            "name": "Desktop PC",
+            "price": 80000,
+            "created_at": "2023-05-15"
+          },
+          "cost": 80000,
+          "quantity": "1"
+        },
+        {
+          "id": 1737529488355,
+          "product": {
+            "id": 5,
+            "name": "Wireless Earbuds",
+            "price": 10000,
+            "created_at": "2023-04-20"
+          },
+          "cost": 30000,
+          "quantity": 3
+        },
+        {
+          "id": 1737529495642,
+          "product": {
+            "id": 8,
+            "name": "Camera",
+            "price": 60000,
+            "created_at": "2023-07-25"
+          },
+          "cost": 60000,
+          "quantity": "1"
+        },
+        {
+          "id": 1737529507403,
+          "product": {
+            "id": 9,
+            "name": "External Hard Drive",
+            "price": 7000,
+            "created_at": "2023-08-15"
+          },
+          "cost": 7000,
+          "quantity": "1"
+        }
+      ],
+      "total": 177000,
+      "tax": 35400,
+      "netTotal": 212400,
+      "id": 3
+    },
+    {
+      "voucher_id": "INV-250122-70246",
+      "customer_name": "wutt",
+      "customer_email": "wutt@gmail.com",
+      "sale_date": "2025-01-22",
+      "redirect_to_voucherDetail": true,
+      "all_check": true,
+      "records": [
+        {
+          "id": 1737534133528,
+          "product": {
+            "id": 9,
+            "name": "External Hard Drive",
+            "price": 7000,
+            "created_at": "2023-08-15"
+          },
+          "cost": 21000,
+          "quantity": "3"
+        }
+      ],
+      "total": 21000,
+      "tax": 4200,
+      "netTotal": 25200,
+      "id": 4
+    },
+    {
+      "voucher_id": "INV-250122-08525",
+      "customer_name": "kyaw ",
+      "customer_email": "kyawkyaw@gmail.com",
+      "sale_date": "2025-01-22",
+      "redirect_to_voucherDetail": true,
+      "all_check": true,
+      "records": [
+        {
+          "id": 1737534422838,
+          "product": {
+            "id": 2,
+            "name": "Laptop",
+            "price": 150000,
+            "created_at": "2023-01-15"
+          },
+          "cost": 150000,
+          "quantity": "1"
+        },
+        {
+          "id": 1737534429867,
+          "product": {
+            "name": "Shoe",
+            "price": "2000",
+            "created_at": "2025-01-21T04:02:06.146Z",
+            "id": 11
+          },
+          "cost": 4000,
+          "quantity": "2"
+        }
+      ],
+      "total": 154000,
+      "tax": 30800,
+      "netTotal": 184800,
+      "id": 5
+    },
+    {
+      "voucher_id": "INV-250123-24844",
+      "customer_name": "aung aung",
+      "customer_email": "aung@gmail.com",
+      "sale_date": "2025-01-23",
+      "redirect_to_voucherDetail": true,
+      "all_check": true,
+      "records": [
+        {
+          "id": 1737618245843,
+          "product": {
+            "id": 6,
+            "name": "Desktop PC",
+            "price": 80000,
+            "created_at": "2023-05-15"
+          },
+          "cost": 80000,
+          "quantity": "1"
+        },
+        {
+          "id": 1737618260035,
+          "product": {
+            "id": 10,
+            "name": "Bluetooth Speaker",
+            "price": 15000,
+            "created_at": "2023-09-05"
+          },
+          "cost": 45000,
+          "quantity": "3"
+        }
+      ],
+      "total": 125000,
+      "tax": 25000,
+      "netTotal": 150000,
+      "id": 6
+    }
+  ]
 }

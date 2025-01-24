@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { HiArrowCircleRight, HiSearch } from "react-icons/hi";
 import { HiOutlinePencil, HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import useSWR from "swr";
 import VoucherListRow from "./VoucherListRow";
 import { Link } from "react-router-dom";
+import { throttle } from "lodash";
 const VoucherList = () => {
-
-  const fetcher = (url)=>fetch(url).then(res=>res.json());
-  const {data,isLoading,error} = useSWR(
-    import.meta.env.VITE_API_URL + "/Vouchers",fetcher
+  const [search, setSearch] = useState("");
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+  const { data, isLoading, error } = useSWR(
+    search
+      ? import.meta.env.VITE_API_URL +
+          "/Vouchers" +
+          `?voucher_id_like=${search}`
+      : import.meta.env.VITE_API_URL + "/Vouchers",
+    fetcher
   );
+
+  const handleSearch = throttle((e) => {
+    setSearch(e.target.value);
+  }, 500);
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -20,6 +30,7 @@ const VoucherList = () => {
                 <HiSearch />
               </div>
               <input
+                onChange={handleSearch}
                 type="text"
                 id="input-group-1"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -29,7 +40,7 @@ const VoucherList = () => {
           </div>
           <div className="">
             <Link
-            to={"/sale"}
+              to={"/sale"}
               type="submit"
               className="text-white flex justify-center items-center gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
@@ -58,9 +69,9 @@ const VoucherList = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              data?.map((voucher)=><VoucherListRow voucher={voucher} key={voucher.id}/>) 
-            }
+            {data?.map((voucher) => (
+              <VoucherListRow voucher={voucher} key={voucher.id} />
+            ))}
           </tbody>
         </table>
       </div>

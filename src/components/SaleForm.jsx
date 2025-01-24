@@ -68,6 +68,7 @@ const SaleForm = () => {
               Add Product
             </button>
           </div>
+          
         </div>
       </form>
     </div>
