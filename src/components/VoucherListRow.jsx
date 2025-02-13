@@ -7,18 +7,19 @@ import { mutate, useSWRConfig } from 'swr';
 import { ring2 } from 'ldrs';
 import { Link } from 'react-router-dom';
 ring2.register();
-const VoucherListRow = ({voucher : {id,voucher_id,customer_name,customer_email,sale_date}}  ) => {
+const VoucherListRow = ({voucher: {id,voucher_id,customer_name,customer_email,sale_date}}  ) => {
 const [isDeleting,setIsDeleting] = useState(false);
 const {mutate} = useSWRConfig();
   const handleDeleteBtn = async () => {
   setIsDeleting(true);
-  await fetch(import.meta.env.VITE_API_URL + "/Vouchers/" + id,{
+  await fetch(import.meta.env.VITE_API_URL + "/vouchers/" + id,{
     method : "DELETE"
   });
   setIsDeleting(false);
-  mutate(import.meta.env.VITE_API_URL + "/Vouchers");
+  mutate(import.meta.env.VITE_API_URL + "/vouchers");
   toast.success("Voucher Deleted Successfully");
 }
+;
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 py-4">{voucher_id}</td>
@@ -38,7 +39,7 @@ const {mutate} = useSWRConfig();
                   className="inline-flex rounded-md shadow-sm items-end"
                   role="group"
                 >
-                  <Link to={`/voucher/detail/${id}`} className="px-4 py-2 rounded-s-lg text-sm font-medium text-red-500 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
+                  <Link to={`detail/${id}`} className="px-4 py-2 rounded-s-lg text-sm font-medium text-red-500 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
                     <HiArrowCircleRight />
                   </Link>

@@ -10,13 +10,13 @@ const Dashboard = () => {
         <Container>
         <div className='grid grid-cols-1 md:grid-cols-3  gap-5 mt-3'>
                 <div className='col-span-1'>
-                <ModuleBtn name={"Product"} icon={<HiCircleStack className='size-16'/>} url={'/product'}/>
+                <ModuleBtn name={"Product"} icon={<HiCircleStack className='size-16'/>} url={'product'}/>
                 </div>
                 <div className='col-span-1'>
-                <ModuleBtn name={"Sale"} icon={<HiOutlineDesktopComputer className='size-16'/>} url={'/sale'}/>
+                <ModuleBtn name={"Sale"} icon={<HiOutlineDesktopComputer className='size-16'/>} url={'sale'}/>
                 </div>
                 <div className='col-span-1'>
-                <ModuleBtn name={"Voucher"} icon={<HiOutlineDocumentDuplicate className='size-16'/>} url={'/voucher'}/>
+                <ModuleBtn name={"Voucher"} icon={<HiOutlineDocumentDuplicate className='size-16'/>} url={'voucher'}/>
                 </div>
            </div>
         </Container>

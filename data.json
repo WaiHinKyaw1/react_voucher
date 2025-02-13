@@ -74,7 +74,7 @@
       "customer_email": "waihinkyaw@gmail.com",
       "sale_date": "2025-01-21",
       "all_check": true,
-      "records": [
+      "records":  [
         {
           "id": 1737452689601,
           "product": {

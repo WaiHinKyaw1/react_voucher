@@ -8,24 +8,27 @@ import ShowDate from "./showDate";
 
 ring2.register();
 
-const ProductRow = ({ product: { id, name, price, created_at } }) => {
+const ProductRow = ({ product: { id, name, price, created_at, updated_at}, index }) => {
   const { mutate } = useSWRConfig();
   const [sending, setSending] = useState(false);
-  
 
   const handleDeleteBtn = async () => {
     setSending(true);
-    await fetch(import.meta.env.VITE_API_URL + `/products/${id}`, {
+    const res = await fetch(import.meta.env.VITE_API_URL + `/products/${id}`, {
       method: "DELETE",
     });
     setSending(false);
+    const json = await res.json();
+    if(res.status !== 200){
+      return toast.error(json.message);
+    }
     mutate(import.meta.env.VITE_API_URL + "/products");
-    toast.success("Product Deleted Successfully");
+    toast.success(json.message);
   };
-  
+
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <td className="px-6 py-4">{id}</td>
+      <td className="px-6 py-4">{index + 1}</td>
       <th
         scope="row"
         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -38,12 +41,15 @@ const ProductRow = ({ product: { id, name, price, created_at } }) => {
         <ShowDate timestamp={created_at} />
       </td>
       <td className="px-6 py-4 text-end">
+        <ShowDate timestamp={updated_at} />
+      </td>
+      <td className="px-6 py-4 text-end">
         <div
           className="inline-flex rounded-md shadow-sm items-end"
           role="group"
         >
-          <Link 
-          to={`/product/edit/${id}`}
+          <Link
+            to={`edit/${id}`}
             type="button"
             className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white"
           >

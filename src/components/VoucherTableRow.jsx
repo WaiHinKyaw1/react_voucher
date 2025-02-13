@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const VoucherTableRow = ({
   record: {
-    id,
+    product_id,
     cost,
     quantity,
     product: { name, price },
@@ -14,14 +14,14 @@ const VoucherTableRow = ({
 }) => {
     const {removeRecord,changeQuantity} = useRecordStore();
     const handleVoucherDelete = ()=>{
-        removeRecord(id);
+        removeRecord(product_id);
         toast.success("Product Removed Successfully");
     }
     const handleIncreaseQuantity = ()=>{
-        changeQuantity(id,1);
+        changeQuantity(product_id,1);
     }
     const handleDecreaseQuantity = (data)=>{
-        changeQuantity(id,-1);
+        changeQuantity(product_id,-1);
     }
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

@@ -7,7 +7,7 @@ const ProductCreatePage = () => {
   return (
     <section>
     <Container>
-      <Breadcrumb currentPageTitle={'Create Product'} Links={[{url:"/product", title:"Product"}]}/>
+      <Breadcrumb currentPageTitle={'Create Product'} Links={[{url:"product", title:"Product"}]}/>
       <ProductCreateCard/>
     </Container>
    </section>

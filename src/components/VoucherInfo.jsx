@@ -37,24 +37,32 @@ const VoucherInfo = () => {
   const onSubmit = async (data) => {
     setIsSending(true);
     const total = records.reduce((total, reduce) => total + reduce.cost, 0);
-    const tax = total * 0.2;
-    const netTotal = total + tax;
-    const currentData = { ...data, records, total, tax, netTotal };
-    const res = await fetch(import.meta.env.VITE_API_URL + "/Vouchers", {
+    const tax = total * 0.05;
+    const net_total = total + tax;
+    const currentData = { ...data, records, total, tax, net_total };
+    // console.log(currentData);
+    const res = await fetch(import.meta.env.VITE_API_URL + "/vouchers", {
       method: "POST",
       body: JSON.stringify(currentData),
       headers: {
         "Content-Type": "application/json",
+        "Accept" : "application/json"
       },
     });
     const json = await res.json();
-    setIsSending(false);
-    toast.success("Voucher Create Success");
-    reset();
-    restRecord(true);
-    
-    if (redirect_to_voucherDetail) {
-      navigate(`/voucher/detail/${json.id}`);
+   
+    if(res.status == 200){ 
+
+      setIsSending(false);
+      toast.success("Voucher Create Success");
+      reset();
+      restRecord(true);
+  
+      if (redirect_to_voucherDetail) {        
+        navigate(`/voucher/detail/${json.data?.id}`);
+      }
+    }else{
+      toast.error(json.message);
     }
   };
 

@@ -18,7 +18,7 @@ const ProductCreateCard = () => {
   const handleProductCreate = async(data) => {
     setIsSending(true);
     data.created_at = new Date().toISOString();
-    await fetch(import.meta.env.VITE_API_URL + "/products",{
+    await fetch(import.meta.env.VITE_API_URL + "/product",{
       method : "POST",
       body : JSON.stringify({"name" : data.name,"price" : data.price, "created_at" : data.created_at}),
       headers : {
@@ -28,7 +28,7 @@ const ProductCreateCard = () => {
     setIsSending(false);
     reset();
     if(data.back_product_list){
-      navigate('/product');
+      navigate('/dashboard/product');
     }
     toast.success("Product Created Successfully");
   };
@@ -90,7 +90,7 @@ const ProductCreateCard = () => {
             {...register("price", {
               required: true,
               min: 100,
-              max: 10000,
+              max: 1000000,
             })}
             type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -102,7 +102,7 @@ const ProductCreateCard = () => {
             <p className="text-red-500 text-sm">Product price is min 100</p>
           )}
           {errors.price?.type === "max" && (
-            <p className="text-red-500 text-sm">Product price is max 10000</p>
+            <p className="text-red-500 text-sm">Product price is max 1000000</p>
           )}
         </div>
         <div className="flex items-start mb-5">

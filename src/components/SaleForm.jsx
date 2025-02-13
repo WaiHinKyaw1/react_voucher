@@ -5,10 +5,12 @@ import useRecordStore from "../stores/useRecordStore";
 
 const SaleForm = () => {
   const fetcher = (url) => fetch(url).then((res) => res.json());
+  
   const { data, isLoading } = useSWR(
     import.meta.env.VITE_API_URL + "/products",
     fetcher
   );
+  // console.log(data);
   const { register, handleSubmit, reset } = useForm();
   const { addRecord, records,changeQuantity } = useRecordStore();
   const handleProductPurchase = (data) => {
@@ -16,14 +18,14 @@ const SaleForm = () => {
     const currentProductId = currentProduct.id;
     const isExit = records.find(({product:{id}})=> id === currentProductId);
     if(isExit){
-      changeQuantity(isExit.id,data.quantity);
+      changeQuantity(isExit.product_id,data.quantity);
     }else{
 
       addRecord({
-        id: Date.now(),
+        product_id: currentProduct.id,
         product: currentProduct,
-        cost: currentProduct.price * data.quantity,
         quantity: data.quantity,
+        cost: currentProduct.price * data.quantity,
       });
     }
     reset();
@@ -42,7 +44,7 @@ const SaleForm = () => {
             >
               <option value={""}>Select a product</option>
               {!isLoading &&
-                data.map((product) => (
+                data?.data.map((product) => (
                   <option key={product.id} value={JSON.stringify(product)}>
                     {product.name}
                   </option>

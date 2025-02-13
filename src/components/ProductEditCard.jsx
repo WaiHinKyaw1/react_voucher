@@ -20,13 +20,14 @@ const ProductEditCard = () => {
     import.meta.env.VITE_API_URL + `/products/${id}`,
     fetcher
   );
+  console.log(data);
   const { mutate } = useSWRConfig();
   const navigate = useNavigate();
   const [isSending, setIsSending] = useState(false);
-  const handleProductCreate = async (data) => {
+  const handleUpdateProduct = async (data) => {
     setIsSending(true);
     data.created_at = new Date().toISOString();
-    await fetch(import.meta.env.VITE_API_URL + `/products/${id}`, {
+    const res = await fetch(import.meta.env.VITE_API_URL + `/products/${id}`, {
       method: "PUT",
       body: JSON.stringify({
         name: data.name,
@@ -37,13 +38,18 @@ const ProductEditCard = () => {
         "Content-Type": "application/json",
       },
     });
+    
     setIsSending(false);
+    const json = await res.json();
+    if(res.status !== 200){
+      return toast.error(json.message);
+    }
     reset();
     if (data.back_product_list) {
       navigate("/product");
     }
     mutate(import.meta.env.VITE_API_URL + "/products");
-    toast.success("Product Update Successfully");
+    toast.success(json.message);
   };
   return (
     <div className="w-full md:w-1/2 bg-stone-100 p-3">
@@ -80,7 +86,7 @@ const ProductEditCard = () => {
           </div>
         </div>
       ) : (
-        <form className="max-w-sm" onSubmit={handleSubmit(handleProductCreate)}>
+        <form className="max-w-sm" onSubmit={handleSubmit(handleUpdateProduct)}>
           <div className="mb-5">
             <label
               htmlFor="name"
@@ -96,7 +102,7 @@ const ProductEditCard = () => {
                 minLength: 3,
                 maxLength: 20,
               })}
-              defaultValue={data.name}
+              defaultValue={data.data.name}
               type="text"
               className={`${
                 errors.name
@@ -131,9 +137,9 @@ const ProductEditCard = () => {
               {...register("price", {
                 required: true,
                 min: 100,
-                max: 100000,
+                max: 1000000,
               })}
-              defaultValue={data.price}
+              defaultValue={data.data.price}
               type="number"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />

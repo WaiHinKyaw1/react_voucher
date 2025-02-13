@@ -5,8 +5,8 @@ import VoucherTableRow from './VoucherTableRow';
 const VoucherTable = () => {
   const {records} = useRecordStore();
   const total = records.reduce((total , reduce)=>(total + reduce.cost),0);
-  const tax = total * 0.2;
-  const netTotal = total + tax;
+  const tax = total * 0.05;
+  const net_total = total + tax;
   return (
     <div className='relative shadow-md sm:rounded-lg overflow-hidden'>
         <table className="w-full mt-5  text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -33,7 +33,7 @@ const VoucherTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {records.map((record,index)=>(<VoucherTableRow key={index} record={record} index={index}/>))}
+                {records.map((record,index)=>(<VoucherTableRow key={record.product.id} record={record} index={index}/>))}
               </tbody>
               <tfoot >
                 <tr className='border-b'>
@@ -44,7 +44,7 @@ const VoucherTable = () => {
                     <td className='px-6 py-4 text-end'></td>
                 </tr>
                 <tr className='border-b'>
-                    <td className='px-6 py-4 text-end'colSpan={4}>Tax(Val 20%)</td>
+                    <td className='px-6 py-4 text-end'colSpan={4}>Tax(Val 5%)</td>
                     <td className='px-6 py-4 text-end'>
                       {tax.toFixed(2)}
                     </td>
@@ -53,7 +53,7 @@ const VoucherTable = () => {
                 <tr className='border-b'>
                     <td className='px-6 py-4 text-end'colSpan={4}> NetTotal</td>
                     <td className='px-6 py-4 text-end'>
-                      {netTotal.toFixed(2)}
+                      {net_total.toFixed(2)}
                     </td>
                     <td className='px-6 py-4 text-end'></td>
                 </tr>
